@@ -1,0 +1,38 @@
+#!/bin/bash
+echo -e "$(tput setaf 5)Running betty-style before commit...$(tput sgr 0)\n"
+while read -r line
+do
+	ONLY_C=`echo $line | grep -F '.c' | wc -l`
+
+	if [ ONLY_C > 0 ]; then
+
+		betty-style "$line"
+		RESULT=$?
+
+		if [ $RESULT -ne 0 ]; then
+			echo -e "\n$(tput setaf 1)Failed to commit: betty-style exited with non-zero."
+			exit $RESULT
+		fi
+	fi
+done < <(git diff --cached --name-status | cut -f 2)
+
+echo -e "$(tput setaf 2)betty-style checker passed, proceeding to commit...$(tput sgr 0)"
+
+echo -e "$(tput setaf 5)Running betty-doc before commit...$(tput sgr 0)\n"
+while read -r line
+do
+	ONLY_C=`echo $line | grep -F '.c|.h' | wc -l`
+
+	if [ ONLY_C > 0 ]; then
+
+		betty-doc -no-doc-sections "$line"
+		RESULT=$?
+
+		if [ $RESULT -ne 0 ]; then
+			echo -e "\n$(tput setaf 1)Failed to commit: betty-doc exited with non-zero."
+			exit $RESULT
+		fi
+	fi
+done < <(git diff --cached --name-status | cut -f 2)
+
+echo -e "$(tput setaf 2)betty-doc checker passed, proceeding to commit...$(tput sgr 0)"
