@@ -10,16 +10,17 @@ This script is a git pre-commit [hook](https://git-scm.com/book/en/v2/Customizin
 2. Make sure you are at the root of you repository (where the `./git` folder is)
 
 
-*Note:* If you made some pre-commit hooks before, use this line:
+**Note:** If you made some pre-commit hooks before, use this line:
 
 ```
 wget https://raw.githubusercontent.com/Cu7ious/betty-pre-commit/master/pre-commit && echo -e "\n # Betty style checker" >> .git/hooks/pre-commit && tail -n +2 pre-commit >> .git/hooks/pre-commit && rm pre-commit
 ```
 
 If you don't know what they are, use this one instead:
+**Warning:** If you already have hook named pre-commit in the `.git/hooks` of the repo, it will be **SILENTLY REPLACED**
 
 ```
-wget https://raw.githubusercontent.com/Cu7ious/betty-pre-commit/master/pre-commit && mv pre-commit ./git/hooks
+wget https://raw.githubusercontent.com/Cu7ious/betty-pre-commit/master/pre-commit && sudo chmod +x pre-commit && mv pre-commit ./.git/hooks
 ```
 
 ## Usage
