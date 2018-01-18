@@ -4,10 +4,16 @@ This script is a git pre-commit (hook)[https://git-scm.com/book/en/v2/Customizin
 
 ## Installation
 
+
+*Prerequesites*
+1. Make sure that you have `git` and (betty)[https://github.com/holbertonschool/Betty] installed on your machine
+2. Make sure you are at the root of you repository (where the `./git` folder is)
+
+
 *Note:* If you made some pre-commit hooks before, use this line:
 
 ```
-wget https://raw.githubusercontent.com/Cu7ious/betty-pre-commit/master/pre-commit && && echo -e "\n # Betty style checker" && tail -n +2 >> ./git/hooks/pre-commit && rm pre-commit
+wget https://raw.githubusercontent.com/Cu7ious/betty-pre-commit/master/pre-commit && echo -e "\n # Betty style checker" >> .git/hooks/pre-commit && tail -n +2 pre-commit >> .git/hooks/pre-commit && rm pre-commit
 ```
 
 If you don't know what they are, use this one instead:
